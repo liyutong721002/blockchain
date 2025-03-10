@@ -48,7 +48,7 @@ public class Block {
                 nonce = newnonce;
             }
             nonce++;
-        }      
+        }
     }
 
     public Block(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
@@ -72,7 +72,7 @@ public class Block {
                 this.nonce = nonce;
             }
             this.nonce++;
-        } 
+        }
     }
 
     public int getNum() {
