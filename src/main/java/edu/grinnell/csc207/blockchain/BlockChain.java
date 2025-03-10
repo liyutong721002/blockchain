@@ -5,5 +5,5 @@ package edu.grinnell.csc207.blockchain;
  * monetary transactions.
  */
 public class BlockChain {
-    // TODO: fill me in!
+
 }
