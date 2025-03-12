@@ -33,7 +33,7 @@ public class Hash {
     public String toString() {
         String result = "";
         for (int i = 0; i < hash.length; i++) {
-            result += String.format("%02X ", Byte.toUnsignedInt(hash[i]));
+            result += String.format("%02x", Byte.toUnsignedInt(hash[i]));
         }
         return result;
     }

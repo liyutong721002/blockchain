@@ -31,7 +31,7 @@ public class BlockChain {
 
     public Block mine(int amount) throws NoSuchAlgorithmException {
         Hash preHash = last.block.getHash();
-        Block newBlock = new Block(last.block.getNum(), amount, preHash);
+        Block newBlock = new Block(last.block.getNum()+1, amount, preHash);
         return newBlock;
     }
 
@@ -66,7 +66,7 @@ public class BlockChain {
     }
 
     public boolean isValidBlockChain() {
-        Node current = first;
+        Node current = first.next;
         int aliceBalance = first.block.getAmount();
         int bobBalance = 0;
         while (current != null) {
@@ -80,8 +80,8 @@ public class BlockChain {
         return true;
     }
 
-    public void printBalances() {
-        Node current = first;
+    public String printBalances() {
+        Node current = first.next;
         int aliceBalance = first.block.getAmount();
         int bobBalance = 0;
         while (current != null) {
@@ -90,6 +90,7 @@ public class BlockChain {
             current = current.next;
         }
         System.out.println("Alice: " + aliceBalance + ", Bob: " + bobBalance);
+        return "Alice: " + aliceBalance + ", Bob: " + bobBalance;
     }
 
     public String toString() {
@@ -97,6 +98,7 @@ public class BlockChain {
         String result = "";
         while (current != null) {
             result += current.block.toString();
+            result += "\n";
             current = current.next;
         }
         return result;
