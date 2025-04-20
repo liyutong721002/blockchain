@@ -9,3 +9,6 @@ Authors: Annie Li
 *   (NetBeans)
 *   (Java"23.0.2")
 *   (github)
+
+### Changelog
+*  Fix style errors
