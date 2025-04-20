@@ -9,14 +9,16 @@ import java.io.IOException;
  */
 public class BlockChainDriver {
 
-    private static void Mine(BlockChain blockchain, Scanner scanner) throws NoSuchAlgorithmException {
+    private static void mine(BlockChain blockchain, Scanner scanner)
+            throws NoSuchAlgorithmException {
         System.out.print("Amount transferred? ");
         int amount = scanner.nextInt();
         Block minedBlock = blockchain.mine(amount);
         System.out.println("amount = " + amount + ", nonce = " + minedBlock.getNonce());
     }
 
-    private static void Append(BlockChain blockchain, Scanner scanner) throws NoSuchAlgorithmException {
+    private static void append(BlockChain blockchain, Scanner scanner)
+            throws NoSuchAlgorithmException {
         System.out.print("Amount transferred? ");
         int amount = scanner.nextInt();
         System.out.print("Nonce? ");
@@ -50,10 +52,10 @@ public class BlockChainDriver {
             String command = scanner.next();
             switch (command) {
                 case "mine":
-                    Mine(blockchain, scanner);
+                    mine(blockchain, scanner);
                     break;
                 case "append":
-                    Append(blockchain, scanner);
+                    append(blockchain, scanner);
                     break;
                 case "remove":
                     if (!blockchain.removeLast()) {

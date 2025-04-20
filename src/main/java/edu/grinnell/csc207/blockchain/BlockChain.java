@@ -22,6 +22,11 @@ public class BlockChain {
     private Node first;
     private Node last;
 
+    /**
+     * construct a new blockchain with the given initial amount of money
+     * @param initial an integer which is the initial amount of money 
+     * @throws NoSuchAlgorithmException if hashing algorithm is not available 
+     */
     public BlockChain(int initial) throws NoSuchAlgorithmException {
         Block block = new Block(0, initial, null);
         Node node = new Node(block);
@@ -29,18 +34,33 @@ public class BlockChain {
         last = node;
     }
 
+    /**
+     * mine a new block based on the amount of money 
+     * @param amount an integer of the amount of money transferred
+     * @return a new block mined
+     * @throws NoSuchAlgorithmException if hashing algorithm is not available 
+     */
     public Block mine(int amount) throws NoSuchAlgorithmException {
         Hash preHash = last.block.getHash();
-        Block newBlock = new Block(last.block.getNum()+1, amount, preHash);
+        Block newBlock = new Block(last.block.getNum() + 1, amount, preHash);
         return newBlock;
     }
 
+    /**
+     * get the number of blocks
+     * @return an integer of the size of the blockchain
+     */
     public int getSize() {
         return last.block.getNum() + 1;
     }
 
+    /**
+     * append a block to the end of the block chain 
+     * @param blk a block to be appended
+     */
     public void append(Block blk) {
-        if (!blk.getPrevHash().equals(last.block.getHash()) || blk.getNum() != last.block.getNum() + 1) {
+        if (!blk.getPrevHash().equals(last.block.getHash()) 
+                || blk.getNum() != last.block.getNum() + 1) {
             throw new IllegalArgumentException("Invalid block");
         }
         Node newNode = new Node(blk);
@@ -48,6 +68,10 @@ public class BlockChain {
         last = newNode;
     }
 
+    /**
+     * remove the last block
+     * @return true if the block can be removed
+     */
     public boolean removeLast() {
         if (last.block.getNum() == 0) {
             return false;
@@ -61,10 +85,18 @@ public class BlockChain {
         return true;
     }
 
+    /**
+     * get the hash of the last block 
+     * @return the hash of the last block
+     */
     public Hash getHash() {
         return last.block.getHash();
     }
 
+    /**
+     * check if the block chain is valid
+     * @return true if the block chain is valid
+     */
     public boolean isValidBlockChain() {
         Node current = first.next;
         int aliceBalance = first.block.getAmount();
@@ -80,6 +112,10 @@ public class BlockChain {
         return true;
     }
 
+    /**
+     * calculate the balances of Alice and Bob and print them
+     * @return a string of the balances
+     */
     public String printBalances() {
         Node current = first.next;
         int aliceBalance = first.block.getAmount();
@@ -93,6 +129,10 @@ public class BlockChain {
         return "Alice: " + aliceBalance + ", Bob: " + bobBalance;
     }
 
+    /**
+     * convert the block chain to a string
+     * @return a string representation of the block chain
+     */
     public String toString() {
         Node current = first;
         String result = "";
